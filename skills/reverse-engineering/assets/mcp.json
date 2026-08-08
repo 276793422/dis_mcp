@@ -1,0 +1,33 @@
+{
+  "mcpServers": {
+    "jadx-mcp-server": {
+      "command": "py",
+      "args": [
+        "-3.13",
+        "E:\\Tools\\jadx-gui-1.5.6-with-jre-win\\jadx-mcp-server-6.4.0\\jadx-mcp-server\\jadx_mcp_server.py"
+      ]
+    },
+    "frida_mcp": {
+      "command": "py",
+      "args": [
+        "-3.13",
+        "-m",
+        "frida_mcp"
+      ]
+    },
+    "idalib": {
+      "command": "E:\\Tools\\uv\\uv-x86_64-pc-windows-msvc\\uv.exe",
+      "args": [
+        "run",
+        "--project",
+        "E:\\Tools\\IDA Professional 9.2\\ida-pro-mcp",
+        "idalib-mcp",
+        "--stdio"
+      ]
+    },
+    "ida-pro-mcp": {
+      "type": "http",
+      "url": "http://127.0.0.1:13337/mcp"
+    }
+  }
+}
