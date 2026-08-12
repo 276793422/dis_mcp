@@ -4,7 +4,7 @@ native **IDA GUI 前台联动**。AI 操作用户 IDA 里正开着的库,用户�
 
 ## 前置
 
-- **uv** + **ida-pro-mcp 源**(`git clone https://github.com/mrexodia/ida-pro-mcp`,同 idalib)
+- **uv** + **ida-pro-mcp 源**(`git clone https://github.com/276793422/fork_mrexodia_ida-pro-mcp`,同 idalib)
 - **IDA Pro 9.2**,且其 IDAPython 已切到 **≥3.11**(见下,这一步常被漏)
 
 ## 安装步骤

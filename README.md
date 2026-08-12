@@ -8,10 +8,11 @@
 
 | MCP | 作用 | 源 |
 |---|---|---|
-| jadx-mcp-server | Java/DEX 静态(APK 反编译) | https://github.com/zinja-coder/jadx-mcp-server |
+| jadx-mcp-server | Java/DEX 静态(APK 反编译) | https://github.com/276793422/fork_zinja-coder_jadx-mcp-server |
+| jadx-ai-mcp | jadx-gui 的 AI MCP 插件(非独立 server,随 jadx-gui) | https://github.com/276793422/fork_zinja-coder_jadx-ai-mcp |
 | frida_mcp | 运行时动态(hook/内存/dump) | https://github.com/276793422/frida_mcp |
-| idalib | native 无头静态(.so/.dll 反编译) | https://github.com/mrexodia/ida-pro-mcp |
-| ida-pro-mcp | native IDA GUI 前台联动 | https://github.com/mrexodia/ida-pro-mcp |
+| idalib | native 无头静态(.so/.dll 反编译) | https://github.com/276793422/fork_mrexodia_ida-pro-mcp |
+| ida-pro-mcp | native IDA GUI 前台联动 | https://github.com/276793422/fork_mrexodia_ida-pro-mcp |
 
 装好后,Claude Code 能在"分析这个 APK 的网络通信""反编译这个 .so 的某函数""hook 这个方法 dump 参数"等指令下,自动选对工具、串联流程、避开参数/配置陷阱。
 

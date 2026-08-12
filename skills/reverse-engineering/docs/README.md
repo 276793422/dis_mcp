@@ -17,10 +17,10 @@
 
 | 资源 | 本机路径 | 获取方式(换设备) |
 |---|---|---|
-| jadx-gui + AI MCP 插件 | `E:\Tools\jadx-gui-1.5.6-with-jre-win` | 插件 https://github.com/zinja-coder/jadx-ai-mcp ;服务 https://github.com/zinja-coder/jadx-mcp-server |
+| jadx-gui + AI MCP 插件 | `E:\Tools\jadx-gui-1.5.6-with-jre-win` | 插件 https://github.com/276793422/fork_zinja-coder_jadx-ai-mcp ;服务 https://github.com/276793422/fork_zinja-coder_jadx-mcp-server |
 | frida_mcp(本项目实现) | `E:\Tools\Frida\frida_mcp` | `git clone https://github.com/276793422/frida_mcp.git` |
 | uv | `E:\Tools\uv\uv-x86_64-pc-windows-msvc` | https://astral.sh/uv (单文件) |
-| ida-pro-mcp | `E:\Tools\IDA Professional 9.2\ida-pro-mcp` | `git clone https://github.com/mrexodia/ida-pro-mcp` |
+| ida-pro-mcp | `E:\Tools\IDA Professional 9.2\ida-pro-mcp` | `git clone https://github.com/276793422/fork_mrexodia_ida-pro-mcp` |
 | IDA Pro 9.2 | `E:\Tools\IDA Professional 9.2` | 官方 https://hex-rays.com |
 
 新机还要装:**Python 3.13+**(带 `py` 启动器)、**IDA 9.x**(已激活许可)、**Android Platform Tools**(adb,可选,连设备用)。

@@ -34,9 +34,10 @@ py scripts/gen-mcp-config.py --jadx <jadx_mcp_server.py> --uv <uv.exe> --ida-mcp
 
 | MCP | 源 |
 |---|---|
-| jadx-mcp-server | https://github.com/zinja-coder/jadx-mcp-server |
+| jadx-mcp-server | https://github.com/276793422/fork_zinja-coder_jadx-mcp-server |
+| jadx-ai-mcp | https://github.com/276793422/fork_zinja-coder_jadx-ai-mcp |
 | frida_mcp | https://github.com/276793422/frida_mcp |
-| idalib / ida-pro-mcp | https://github.com/mrexodia/ida-pro-mcp |
+| idalib / ida-pro-mcp | https://github.com/276793422/fork_mrexodia_ida-pro-mcp |
 
 ## 使用
 

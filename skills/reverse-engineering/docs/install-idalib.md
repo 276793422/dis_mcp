@@ -1,12 +1,12 @@
 # 03 - idalib 安装
 
-native 无头静态分析(mrexodia/ida-pro-mcp v2.0 的 idalib headless 模式,`idalib-mcp --stdio`)。不开 IDA GUI,AI 后台直接分析二进制。
+native 无头静态分析(276793422/fork_mrexodia_ida-pro-mcp v2.0 的 idalib headless 模式,`idalib-mcp --stdio`)。不开 IDA GUI,AI 后台直接分析二进制。
 
 ## 前置
 
 - **uv**:`E:\Tools\uv\uv-x86_64-pc-windows-msvc\uv.exe`(单文件,`uv run` 会自动拉 Python 3.11 + 依赖)
 - **IDA Pro 9.2**(已激活)
-- **ida-pro-mcp 源**:`E:\Tools\IDA Professional 9.2\ida-pro-mcp`(换设备 `git clone https://github.com/mrexodia/ida-pro-mcp`)
+- **ida-pro-mcp 源**:`E:\Tools\IDA Professional 9.2\ida-pro-mcp`(换设备 `git clone https://github.com/276793422/fork_mrexodia_ida-pro-mcp`)
 
 ## 关键机制(理解后省事)
 

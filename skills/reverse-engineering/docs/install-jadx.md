@@ -4,8 +4,8 @@ Java/DEX 静态分析。最简单,先装它验证整个 MCP 机制。
 
 ## 源/获取
 
-- jadx AI MCP 插件:https://github.com/zinja-coder/jadx-ai-mcp
-- jadx MCP 服务:https://github.com/zinja-coder/jadx-mcp-server
+- jadx AI MCP 插件:https://github.com/276793422/fork_zinja-coder_jadx-ai-mcp
+- jadx MCP 服务:https://github.com/276793422/fork_zinja-coder_jadx-mcp-server
 - (本机用 jadx-mcp-server-6.4.0 解压版;换设备可从上面 git 取最新,或用 release zip)
 
 ## 前置

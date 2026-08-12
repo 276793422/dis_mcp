@@ -70,9 +70,9 @@ def main():
 
     # 路径存在性检查(缺失时给出获取地址提示)
     SOURCES = {
-        "jadx 脚本": "https://github.com/zinja-coder/jadx-mcp-server (服务) + https://github.com/zinja-coder/jadx-ai-mcp (插件)",
+        "jadx 脚本": "https://github.com/276793422/fork_zinja-coder_jadx-mcp-server (服务) + https://github.com/276793422/fork_zinja-coder_jadx-ai-mcp (插件)",
         "uv.exe": "https://astral.sh/uv",
-        "ida-pro-mcp 目录": "git clone https://github.com/mrexodia/ida-pro-mcp",
+        "ida-pro-mcp 目录": "git clone https://github.com/276793422/fork_mrexodia_ida-pro-mcp",
     }
     print("路径检查:")
     missing = []
