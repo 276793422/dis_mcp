@@ -1,6 +1,6 @@
 # MCP Tool Catalogue
 
-Exact tool names and parameter shapes for the four reverse-engineering MCPs. When a tool takes `queries`/`patterns`, pass a **list** (of dicts or strings) — never a bare scalar.
+Exact tool names and parameter shapes for the five reverse-engineering MCPs (windbg-mcp optional). When a tool takes `queries`/`patterns`, pass a **list** (of dicts or strings) — never a bare scalar.
 
 ## jadx-mcp-server — Java/DEX static
 

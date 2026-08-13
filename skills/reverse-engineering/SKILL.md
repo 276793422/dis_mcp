@@ -91,7 +91,7 @@ Install/config/troubleshooting details: see `references/setup.md`.
 ## Additional Resources
 
 ### Reference Files
-- **`references/mcp-tools.md`** — full tool catalogue with exact parameter schemas for all four MCPs.
+- **`references/mcp-tools.md`** — full tool catalogue with exact parameter schemas for all five MCPs.
 - **`references/setup.md`** — quick installation, `.mcp.json` config, `deploy.py` usage, and troubleshooting (Python version, PATH, anti-frida, parameter errors).
 
 ### Installation Docs (detailed, with common pitfalls)

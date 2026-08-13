@@ -4,7 +4,7 @@
 
 ## 这是什么
 
-本仓库提供一个 Claude Code skill(`skills/reverse-engineering/`),编排四个 MCP server:
+本仓库提供一个 Claude Code skill(`skills/reverse-engineering/`),编排五个 MCP server(windbg-mcp 可选):
 
 | MCP | 作用 | 源 |
 |---|---|---|
@@ -38,8 +38,8 @@ skills/reverse-engineering/   逆向工程 skill
    # 或用户级(所有项目可用)
    git clone https://github.com/276793422/dis_mcp.git ~/.claude
    ```
-2. **按 skill README 装四个 MCP + 生成配置**:见 [`skills/reverse-engineering/README.md`](skills/reverse-engineering/README.md)(4 步,含每步细节)
-3. **重启 Claude Code**,批准新出现的四个 MCP server
+2. **按 skill README 装五个 MCP(windbg-mcp 可选) + 生成配置**:见 [`skills/reverse-engineering/README.md`](skills/reverse-engineering/README.md)(4 步,含每步细节)
+3. **重启 Claude Code**,批准新出现的 MCP server(windbg 未装则不出现)
 
 ## 环境
 

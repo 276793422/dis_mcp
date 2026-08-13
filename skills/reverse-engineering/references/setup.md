@@ -1,6 +1,6 @@
 # Setup & Troubleshooting
 
-How the four MCPs are installed/configured, plus common pitfalls and fixes.
+How the five MCPs (windbg-mcp optional) are installed/configured, plus common pitfalls and fixes.
 
 ## `.mcp.json`(项目根目录)
 

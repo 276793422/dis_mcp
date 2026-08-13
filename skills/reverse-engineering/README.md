@@ -1,6 +1,6 @@
 # reverse-engineering — Claude Code 逆向工程 skill
 
-一个 Claude Code skill,把 **jadx / Frida / IDA Pro** 通过四个 MCP server 统一进 MCP 协议,让 Claude 用自然语言编排 Android 应用与原生二进制的静态/动态逆向分析。
+一个 Claude Code skill,把 **jadx / Frida / IDA Pro / WinDbg(cdb)** 通过五个 MCP server(windbg 可选)统一进 MCP 协议,让 Claude 用自然语言编排 Android 应用与 Windows 原生二进制的静态/动态逆向分析。
 
 装上它,Claude Code 就能在一句"分析这个 APK 的网络通信"或"反编译这个 .so 的某函数"下,自动选对工具(jadx 看 Java、idalib/ida-pro-mcp 看 native、frida 跑动态)、串联流程、并避开常见的参数/配置陷阱。
 
@@ -11,7 +11,7 @@
 - **项目级**:`<项目>/.claude/skills/reverse-engineering/`
 - **用户级**(所有项目可用):`C:\Users\<user>\.claude/skills/reverse-engineering/`
 
-### 2. 装四个 MCP
+### 2. 装五个 MCP(windbg 可选)
 按 `docs/install-*.md` 逐个安装(每份含完整步骤 + 常见问题):
 
 | MCP | 文档 | 作用 |
@@ -29,9 +29,9 @@ py scripts/gen-mcp-config.py --jadx <jadx_mcp_server.py> --uv <uv.exe> --ida-mcp
 路径缺失时脚本会**自动提示去哪个 git/官网获取**。详见 [docs/README.md](docs/README.md)。
 
 ### 4. 重启 Claude Code
-重启会话,批准新出现的四个 MCP server。之后逆向类请求会自动触发本 skill。
+重启会话,批准新出现的 MCP server(windbg 未装则不出现)。之后逆向类请求会自动触发本 skill。
 
-## 四个 MCP 来源
+## 五个 MCP 来源(windbg 可选)
 
 | MCP | 源 |
 |---|---|

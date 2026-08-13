@@ -1,6 +1,6 @@
 # MCP 安装文档
 
-四个 MCP 构成完整逆向流水线。本档是**可复现安装指南**——换一台设备,照此即可装齐。
+五个 MCP(windbg 可选)构成完整逆向流水线。本档是**可复现安装指南**——换一台设备,照此即可装齐。
 
 ## 架构
 
@@ -60,7 +60,7 @@ py .claude/skills/reverse-engineering/scripts/gen-mcp-config.py \
     --output .mcp.json
 ```
 
-脚本会**合并**四个 server 到目标 `.mcp.json`(保留已有的其他 MCP),不会覆盖。参考配置在 `assets/mcp.json`(当前机器的完整配置,也可手动改路径用)。
+脚本会**合并**这些 server 到目标 `.mcp.json`(windbg-mcp 需加 --with-windbg;保留已有的其他 MCP),不会覆盖。参考配置在 `assets/mcp.json`(当前机器的完整配置,也可手动改路径用)。
 
 ## 各 MCP 安装
 

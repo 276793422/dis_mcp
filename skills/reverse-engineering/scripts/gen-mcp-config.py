@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-生成/合并四个逆向 MCP 的 .mcp.json 配置。
+生成/合并五个逆向 MCP(windbg 可选)的 .mcp.json 配置。
 
 换设备后,在项目根目录跑(默认路径生成本机配置):
     py gen-mcp-config.py
@@ -74,7 +74,7 @@ def main():
     except Exception:
         pass
 
-    ap = argparse.ArgumentParser(description="生成/合并四个逆向 MCP 的 .mcp.json 配置")
+    ap = argparse.ArgumentParser(description="生成/合并五个逆向 MCP(windbg 可选)的 .mcp.json 配置")
     ap.add_argument("--output", default=".mcp.json", help="目标 .mcp.json 路径(默认当前目录 .mcp.json)")
     ap.add_argument("--jadx", default=DEFAULTS["jadx_script"], help="jadx_mcp_server.py 路径")
     ap.add_argument("--uv", default=DEFAULTS["uv_exe"], help="uv.exe 路径")
