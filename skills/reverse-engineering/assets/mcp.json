@@ -28,6 +28,13 @@
     "ida-pro-mcp": {
       "type": "http",
       "url": "http://127.0.0.1:13337/mcp"
+    },
+    "windbg-mcp": {
+      "command": "py",
+      "args": ["-3.13", "E:\\AI\\ZSZS\\windbg_mcp\\server.py"],
+      "env": {
+        "_NT_SYMBOL_PATH": "srv*C:\\Symbols*https://msdl.microsoft.com/download/symbols"
+      }
     }
   }
 }

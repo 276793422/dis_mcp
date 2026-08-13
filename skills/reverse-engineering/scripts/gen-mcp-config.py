@@ -27,12 +27,17 @@ DEFAULTS = {
     "python":      "py",
     "py_version":  "-3.13",
     "ida_http":    "http://127.0.0.1:13337/mcp",
+    # windbg-mcp(可选,Windows-only,自研 cdb 会话版;默认不写入 .mcp.json,需 --with-windbg 启用)
+    "windbg_server":    r"E:\AI\ZSZS\windbg_mcp\server.py",   # 自研 server 入口(git clone https://github.com/276793422/windbg_mcp 后的 server.py)
+    "windbg_cdb_path":  "",   # cdb.exe 路径或目录;空=让 server 自动搜索
+    "nt_symbol_path":   r"srv*C:\Symbols*https://msdl.microsoft.com/download/symbols",
 }
 
 
-def build_servers(jadx_script, uv_exe, ida_mcp_dir, python, py_version, ida_http):
+def build_servers(jadx_script, uv_exe, ida_mcp_dir, python, py_version, ida_http,
+                  with_windbg=False, windbg_server=None, windbg_cdb_path=None, nt_symbol_path=None):
     pyv = [py_version] if py_version else []
-    return {
+    servers = {
         "jadx-mcp-server": {
             "command": python,
             "args": pyv + [jadx_script],
@@ -50,6 +55,17 @@ def build_servers(jadx_script, uv_exe, ida_mcp_dir, python, py_version, ida_http
             "url": ida_http,
         },
     }
+    # windbg-mcp:可选,Windows-only,自研 cdb 会话版;默认不含,找到 cdb 后 --with-windbg 启用
+    if with_windbg:
+        env = {"_NT_SYMBOL_PATH": nt_symbol_path or ""}
+        if windbg_cdb_path:
+            env["WINDBGMCP_CDB"] = windbg_cdb_path       # 让 server 用指定 cdb.exe/目录
+        servers["windbg-mcp"] = {
+            "command": python,
+            "args": pyv + [windbg_server],
+            "env": env,
+        }
+    return servers
 
 
 def main():
@@ -66,6 +82,10 @@ def main():
     ap.add_argument("--python", default=DEFAULTS["python"], help="python 命令(默认 py)")
     ap.add_argument("--py-version", default=DEFAULTS["py_version"], help="python 版本参数(默认 -3.13;留空字符串则不传)")
     ap.add_argument("--ida-http", default=DEFAULTS["ida_http"], help="ida-pro-mcp HTTP URL")
+    ap.add_argument("--with-windbg", action="store_true", help="加入 windbg-mcp(自研 cdb 会话版,可选,Windows-only;找到 cdb 后启用,默认不写入)")
+    ap.add_argument("--windbg-server", default=DEFAULTS["windbg_server"], help="自研 windbg server.py 路径")
+    ap.add_argument("--cdb-path", default=DEFAULTS["windbg_cdb_path"], help="cdb.exe 全路径或其目录(空=server 自动搜索);写入 env WINDBGMCP_CDB")
+    ap.add_argument("--nt-symbol-path", default=DEFAULTS["nt_symbol_path"], help="符号路径 _NT_SYMBOL_PATH(写入 env)")
     args = ap.parse_args()
 
     # 路径存在性检查(缺失时给出获取地址提示)
@@ -73,10 +93,14 @@ def main():
         "jadx 脚本": "https://github.com/276793422/fork_zinja-coder_jadx-mcp-server (服务) + https://github.com/276793422/fork_zinja-coder_jadx-ai-mcp (插件)",
         "uv.exe": "https://astral.sh/uv",
         "ida-pro-mcp 目录": "git clone https://github.com/276793422/fork_mrexodia_ida-pro-mcp",
+        "windbg-mcp server": "git clone https://github.com/276793422/windbg_mcp(换设备 clone;server.py 在 clone 目录)",
     }
     print("路径检查:")
     missing = []
-    for label, p in [("jadx 脚本", args.jadx), ("uv.exe", args.uv), ("ida-pro-mcp 目录", args.ida_mcp)]:
+    checks = [("jadx 脚本", args.jadx), ("uv.exe", args.uv), ("ida-pro-mcp 目录", args.ida_mcp)]
+    if args.with_windbg:
+        checks.append(("windbg-mcp server", args.windbg_server))
+    for label, p in checks:
         ok = os.path.exists(p)
         print(f"  [{'OK' if ok else '缺失'}] {label}: {p}")
         if not ok:
@@ -85,7 +109,8 @@ def main():
     if missing:
         print("\n提示: 上述路径缺失。按提示 clone/下载后,用 --jadx/--uv/--ida-mcp 指定正确路径再跑本脚本。")
 
-    servers = build_servers(args.jadx, args.uv, args.ida_mcp, args.python, args.py_version, args.ida_http)
+    servers = build_servers(args.jadx, args.uv, args.ida_mcp, args.python, args.py_version, args.ida_http,
+                            args.with_windbg, args.windbg_server, args.cdb_path, args.nt_symbol_path)
 
     # 合并到目标 .mcp.json(保留已有 server)
     if os.path.exists(args.output):

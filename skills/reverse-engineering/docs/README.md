@@ -9,6 +9,7 @@
    运行进程 ──► frida_mcp          动态插桩(hook/内存/dump)
    .so/.dll ──► idalib             native 无头静态
                ida-pro-mcp         native IDA GUI 前台联动
+   Win dump/进程 ──► windbg-mcp          Windows 原生调试(崩溃/内核/pwn,可选)
 ```
 
 ## 需要随设备迁移的本地资源
@@ -22,12 +23,13 @@
 | uv | `E:\Tools\uv\uv-x86_64-pc-windows-msvc` | https://astral.sh/uv (单文件) |
 | ida-pro-mcp | `E:\Tools\IDA Professional 9.2\ida-pro-mcp` | `git clone https://github.com/276793422/fork_mrexodia_ida-pro-mcp` |
 | IDA Pro 9.2 | `E:\Tools\IDA Professional 9.2` | 官方 https://hex-rays.com |
+| windbg-mcp(可选) | `E:\AI\ZSZS\windbg_mcp` | `git clone https://github.com/276793422/windbg_mcp` |
 
 新机还要装:**Python 3.13+**(带 `py` 启动器)、**IDA 9.x**(已激活许可)、**Android Platform Tools**(adb,可选,连设备用)。
 
 ## 安装顺序
 
-按依赖关系:① jadx(最简,验证 MCP 机制)→ ② frida_mcp → ③ idalib(需 uv)→ ④ ida-pro-mcp(需 uv + 切 IDA Python)。
+按依赖关系:① jadx(最简,验证 MCP 机制)→ ② frida_mcp → ③ idalib(需 uv)→ ④ ida-pro-mcp(需 uv + 切 IDA Python)。⑤ windbg-mcp 可选(Windows-only,需 Debugging Tools for Windows + 符号路径)。
 
 每装完一个,改 `.mcp.json` 后**重启 Claude Code 会话**并批准。
 
@@ -66,3 +68,4 @@ py .claude/skills/reverse-engineering/scripts/gen-mcp-config.py \
 - [02 - frida_mcp](./install-frida-mcp.md)
 - [03 - idalib](./install-idalib.md)
 - [04 - ida-pro-mcp](./install-ida-pro-mcp.md)
+- [05 - WinDbg MCP(可选,Windows-only)](./install-windbg.md)

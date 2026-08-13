@@ -94,3 +94,50 @@ get_messages(session_id)        → collect send() output
 
 - idalib tools take a `database="<session_id>"` arg (names which headless worker).
 - ida-pro-mcp tools have NO `database` arg — they operate on whatever DB is open in the user's IDA window.
+
+## windbg-mcp — Windows native debugging (optional, Windows-only)
+
+Self-built, cdb-session based. Drives the system's own `cdb.exe` (no third-party debug lib,
+only the `mcp` SDK). Architecture: **token_key session lifecycle** — `open(target)` returns a
+`token_key`; all later ops carry it; context (symbols / thread / frame / breakpoints) persists
+across calls, exactly like sitting at a cdb prompt.
+
+Two layers: session lifecycle + thin wrappers over common cdb commands. `run` is the unified
+escape hatch for any cdb command.
+
+### Session lifecycle
+- `open(target, args?, kind?, initial_commands?, ready_timeout_ms?)` → `{token_key, kind, alive, banner}`
+  - kind: `dump`(.dmp/.mdmp) / `launch`(exe) / `attach`(pid) / `kernel`(connect string) / `auto`
+- `run(token_key, command, timeout_ms=30000)` → `{output, alive, timed_out}` — **any cdb command**
+- `interrupt(token_key)` — break the running command (CTRL+BREAK), e.g. a blocked `g`
+- `close(token_key)` — quit the session
+- `sessions()` → list active `{token_key, kind, target, alive}` (auto-reaps dead sessions)
+- `list_dumps(directory, pattern?, limit?)` → list dump files under a dir (no session needed)
+
+**Safety / limits**: `.shell` / `.pcan` are blocked by default (`WINDBGMCP_ALLOW_DANGEROUS=1` to allow).
+Commands on the same token_key are serialized (no interleaving); different token_keys run concurrently.
+Max concurrent sessions = `WINDBGMCP_MAX_SESSIONS` (default 8, 0=unlimited); dead sessions auto-reaped, all closed at exit.
+
+### Wrappers (common cdb commands; all go through run, same session context)
+- Execution: `go`(g) · `step(into?=False,count=1)`(p/t) · `step_out`(gu) · `goto(expr)`(g expr) · `trace(count)`(t N) · `analyze(verbose?)`(!analyze -v)
+- Registers/Memory: `regs(name?)`(r → parsed `{registers}`) · `set_reg(name,value)`(r name=val) · `read_mem(addr,size)`(db → parsed `{hex,ascii}`) · `write_mem(addr,hex)`(eb) · `read_str(addr,wide?)`(da/du) · `read_ptr(addr,count?)`(dps) · `poi(addr)`(dps L1) · `disasm(addr?,count)`(u $ip) · `mem_info(addr)`(!vprot) · `mem_list()`(!address)
+- Symbols/Modules: `resolve(symbol)`(? → parsed `{addr}`) · `find_symbols(pattern)`(x) · `addr_to_symbol(addr)`(ln) · `modules()`(lm) · `module_info(name)`(lm vm) · `get_exports(name)`(x name!*)
+- Stack/Thread/Frame/Locals: `stack(frames?)`(kv) · `threads()`(~) · `select_thread(id)`(~Ns) · `frame(n)`(.frame N) · `locals()`(dv) · `get_teb()`(r $teb) · `get_peb()`(r $peb) · `get_handles()`(!handle 0 f)
+- Breakpoints: `bp(expr)`(bp) · `hw_bp(addr,size?,access?)`(ba) · `breakpoints()`(bl) · `enable_bp(id)`(be) · `disable_bp(id)`(bd) · `remove_bp(id)`(bc)
+- Capture: `capture_state()` — manual snapshot (registers + call stack + stack memory + disasm at `$ip`)
+
+Session-level also includes `detach(token_key)` (cdb qd — target keeps running, unlike `close`).
+
+`addr` accepts cdb expressions. `regs` / `read_mem` / `resolve` parse structured fields; the rest return clean text (prompt stripped).
+
+**cdb pseudo-register gotcha (tested)**: `$ip` / `$teb` / `$peb` / `$exentry` work; **`$sp` does NOT exist** — get stack pointer via `regs()` (esp/rsp) or use `@esp`/`@rsp` (register refs need `@`). Wrappers already avoid `$sp` (`disasm` uses `$ip`, `capture_state` uses parsed stack pointer).
+**`mem_list` (`!address`)**: first call builds the memory map (slow, output may lag to the next command); `mem_info` (`!vprot`) is lightweight and preferred for single-address queries.
+
+Typical crash-dump flow (interactive — `!analyze` is just the start):
+```
+open("C:/x.dmp")                         → t
+analyze(t)                               → faulting module / exception / stack
+threads(t) → select_thread(t, 3) → stack(t) → frame(t, 2) → locals(t) → regs(t) → disasm(t, count=8)
+run(t, "!heap -stat")                    → anything not wrapped goes through run
+close(t)
+```

@@ -20,6 +20,7 @@
 | frida_mcp | [docs/install-frida-mcp.md](docs/install-frida-mcp.md) | 运行时动态(hook/内存/dump) |
 | idalib | [docs/install-idalib.md](docs/install-idalib.md) | native 无头静态(.so/.dll 反编译) |
 | ida-pro-mcp | [docs/install-ida-pro-mcp.md](docs/install-ida-pro-mcp.md) | native IDA GUI 前台联动 |
+| windbg-mcp | [docs/install-windbg.md](docs/install-windbg.md) | Windows 原生调试(崩溃/内核/pwn,可选,自研 cdb 会话) |
 
 ### 3. 生成 `.mcp.json`
 ```bash
@@ -38,6 +39,7 @@ py scripts/gen-mcp-config.py --jadx <jadx_mcp_server.py> --uv <uv.exe> --ida-mcp
 | jadx-ai-mcp | https://github.com/276793422/fork_zinja-coder_jadx-ai-mcp |
 | frida_mcp | https://github.com/276793422/frida_mcp |
 | idalib / ida-pro-mcp | https://github.com/276793422/fork_mrexodia_ida-pro-mcp |
+| windbg-mcp(可选) | https://github.com/276793422/windbg_mcp(自研) |
 
 ## 使用
 
@@ -68,6 +70,7 @@ reverse-engineering/
 - uv(管理 idalib/ida-pro-mcp 依赖)
 - jadx-gui(带 AI MCP 插件)
 - 连真机做动态分析时:设备 frida-server
+- (可选)Windows 调试:Debugging Tools for Windows + 自研 windbg-mcp(cdb 会话,零三方依赖)
 
 ## 声明
 
