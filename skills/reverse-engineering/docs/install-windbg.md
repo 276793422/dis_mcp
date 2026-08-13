@@ -12,7 +12,7 @@ Windows 原生调试:崩溃 dump / BSOD 事后分析、用户态/内核态断点
 
 ## 源
 
-- 仓库:https://github.com/276793422/windbg_mcp(本项目自研,开源)
+- 仓库:https://github.com/276793422/windbg_mcp （本项目自研,开源）
 - 获取:`git clone https://github.com/276793422/windbg_mcp`(纯 Python,无编译,换设备 clone 即可)
 
 ## 前置

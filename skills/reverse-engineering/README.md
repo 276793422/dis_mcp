@@ -39,7 +39,7 @@ py scripts/gen-mcp-config.py --jadx <jadx_mcp_server.py> --uv <uv.exe> --ida-mcp
 | jadx-ai-mcp | https://github.com/276793422/fork_zinja-coder_jadx-ai-mcp |
 | frida_mcp | https://github.com/276793422/frida_mcp |
 | idalib / ida-pro-mcp | https://github.com/276793422/fork_mrexodia_ida-pro-mcp |
-| windbg-mcp(可选) | https://github.com/276793422/windbg_mcp(自研) |
+| windbg-mcp(可选,自研) | https://github.com/276793422/windbg_mcp |
 
 ## 使用
 

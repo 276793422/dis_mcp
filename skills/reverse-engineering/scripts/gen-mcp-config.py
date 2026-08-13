@@ -93,7 +93,7 @@ def main():
         "jadx 脚本": "https://github.com/276793422/fork_zinja-coder_jadx-mcp-server (服务) + https://github.com/276793422/fork_zinja-coder_jadx-ai-mcp (插件)",
         "uv.exe": "https://astral.sh/uv",
         "ida-pro-mcp 目录": "git clone https://github.com/276793422/fork_mrexodia_ida-pro-mcp",
-        "windbg-mcp server": "git clone https://github.com/276793422/windbg_mcp(换设备 clone;server.py 在 clone 目录)",
+        "windbg-mcp server": "git clone https://github.com/276793422/windbg_mcp —— 换设备 clone,server.py 在 clone 目录",
     }
     print("路径检查:")
     missing = []
