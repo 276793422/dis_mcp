@@ -44,7 +44,7 @@
 
 ## 配置文件(.mcp.json)生成
 
-`.mcp.json` 含 3 个机器特定路径(jadx 脚本、uv.exe、ida-pro-mcp 目录)。换设备后用脚本生成,别手写:
+`.mcp.json` 含 3 个机器特定路径(jadx 脚本、uv.exe、ida-pro-mcp 目录;启用 windbg 再 +1:--windbg-server)。换设备后用脚本生成,别手写:
 
 ```bash
 py .claude/skills/reverse-engineering/scripts/gen-mcp-config.py --output .mcp.json

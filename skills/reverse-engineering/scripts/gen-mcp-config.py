@@ -11,8 +11,8 @@
                           --uv "D:\\path\\uv.exe" \\
                           --ida-mcp "D:\\path\\ida-pro-mcp"
 
-脚本会【合并】四个 server 到目标 .mcp.json(保留已有的其他 server),
-不会覆盖你手动加的别的 MCP。换设备只需改三个路径参数。
+脚本会【合并】这些 server 到目标 .mcp.json(windbg 需 --with-windbg;保留已有的其他 server),
+不会覆盖你手动加的别的 MCP。换设备只需改路径参数(默认 3 个核心;windbg 再加 --windbg-server)。
 """
 import argparse
 import json

@@ -1,6 +1,6 @@
 # dis_mcp
 
-一套面向**逆向工程**的 Claude Code 工具集:一个 skill + 四个开源 MCP server 的配合方案,让 Claude Code 用自然语言做 Android 应用与原生二进制的静态/动态逆向。
+一套面向**逆向工程**的 Claude Code 工具集:一个 skill + 五个开源 MCP server(windbg 可选)的配合方案,让 Claude Code 用自然语言做 Android 应用与 Windows 原生二进制的静态/动态逆向。
 
 ## 这是什么
 
